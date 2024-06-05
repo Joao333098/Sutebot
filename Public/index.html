@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administração do Bot de Economia</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Bot de Economia</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Administração do Bot de Economia</h1>
-        <p>Insira seu token do bot para começar</p>
-        <form id="token-form">
-            <label for="token">Token do Bot:</label>
-            <input type="text" id="token" name="token" required><br><br>
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
+    <h1>Configuração do Bot</h1>
+    <form id="token-form">
+        <label for="token">Token do Bot:</label>
+        <input type="text" id="token" name="token" required><br><br>
+        <button type="submit">Enviar</button>
+    </form>
 
     <script>
         document.getElementById('token-form').addEventListener('submit', function(e) {
@@ -31,11 +27,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    window.location.href = '/manage.html';
-                } else {
-                    alert(data.message);
-                }
+                alert(data.message);
             });
         });
     </script>
