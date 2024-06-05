@@ -30,7 +30,6 @@ app.post('/api/prefix', (req, res) => {
     if (!prefix) {
         return res.json({ success: false, message: 'Prefixo é necessário' });
     }
-    // Atualizar a configuração do prefixo no arquivo de configuração
     let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
     config.prefix = prefix;
     fs.writeFileSync('config.json', JSON.stringify(config));
@@ -42,7 +41,6 @@ app.post('/api/send-money', (req, res) => {
     if (!sendId) {
         return res.json({ success: false, message: 'ID é necessário' });
     }
-    // Atualizar a configuração de envio de dinheiro no arquivo de configuração
     let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
     config.sendId = sendId;
     fs.writeFileSync('config.json', JSON.stringify(config));
@@ -54,7 +52,6 @@ app.post('/api/withdraw-money', (req, res) => {
     if (!withdrawId) {
         return res.json({ success: false, message: 'ID é necessário' });
     }
-    // Atualizar a configuração de retirada de dinheiro no arquivo de configuração
     let config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
     config.withdrawId = withdrawId;
     fs.writeFileSync('config.json', JSON.stringify(config));
