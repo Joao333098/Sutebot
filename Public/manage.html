@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Bot</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gerenciar Funções do Bot</h1>
+        <form id="prefix-form">
+            <label for="prefix">Adicionar Prefixo:</label>
+            <input type="text" id="prefix" name="prefix" required><br><br>
+            <button type="submit">Salvar Prefixo</button>
+        </form>
+
+        <form id="send-money-form">
+            <label for="send-id">ID para Enviar Dinheiro:</label>
+            <input type="text" id="send-id" name="send-id" required><br><br>
+            <button type="submit">Salvar</button>
+        </form>
+
+        <form id="withdraw-money-form">
+            <label for="withdraw-id">ID para Retirar Dinheiro:</label>
+            <input type="text" id="withdraw-id" name="withdraw-id" required><br><br>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('prefix-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const prefix = document.getElementById('prefix').value;
+
+            fetch('/api/prefix', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prefix: prefix })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            });
+        });
+
+        document.getElementById('send-money-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const sendId = document.getElementById('send-id').value;
+
+            fetch('/api/send-money', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ sendId: sendId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            });
+        });
+
+        document.getElementById('withdraw-money-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const withdrawId = document.getElementById('withdraw-id').value;
+
+            fetch('/api/withdraw-money', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ withdrawId: withdrawId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            });
+        });
+    </script>
+</body>
+</html>
